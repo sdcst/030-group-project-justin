@@ -1,37 +1,42 @@
 #!python3
 # Volume Calculator
 # Feel free to rename your variables
-
-
-def title():
-    # Will display a title screen
-    # input parameters: none needed
-    # output parameters: None
-    # Author: Copper
-    # Modified:
-    # title
-    return None
-
-def instructions():
-    # Will display instructions
-    # input parameters: none needed
-    # output parameters: None
-    # Author:
-    # Modified:
-    return None
-
+from check import *
+from finance import *
+from basics_calculator import *
+from tictactoe import *
+from title import *
+from instruction import *
 
 
 def main():
-    """
-    main block of code that will run your program and control program flow
-    You will need to include a while loop to keep repeating the commands until
-    the user chooses to exit
-    """
+    counter = 0
     title()
-    while True:
-        # keep giving options to choose menu options until they choose to exit
+    instructions()
+    options = "a"
+    while options != "exit":
+        options = "a"
+        print()
+        if counter != 0:
+            title()
+        while not isint(options) or int(options) < 0 or int(options) > 3:
+            options = input("Enter the number corresponding to which function you want to try: \n")
+            if options.lower() == "exit":
+                quit()
+            elif not isint(options):
+                print("Invalid Input\n")
+                continue
+            elif int(options) < 0 or int(options) > 3:
+                print("Invalid Input\n")
+        if options == "1":
+            basic()
+        elif options == "2":
+            finance()
+        elif options == "3":
+            games()
         pass
+        counter += 1
+
 
 if __name__ == "__main__":
     main()
